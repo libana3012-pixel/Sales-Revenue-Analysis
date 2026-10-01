@@ -25,9 +25,11 @@ check("Units", "SELECT SUM(quantity) FROM order_items", 28)
 check("Gross sales value", "SELECT SUM(quantity * unit_price) FROM order_items", 2020)
 check("Active customers", "SELECT COUNT(DISTINCT customer_id) FROM orders", 7)
 for month, expected in [("2026-03", 460), ("2026-04", 505), ("2026-05", 450), ("2026-06", 605)]:
-    check(month + " revenue", """SELECT SUM(i.quantity*i.unit_price)
+    actual = db.execute("""SELECT SUM(i.quantity*i.unit_price)
         FROM orders o JOIN order_items i ON i.order_id=o.order_id
-        WHERE substr(o.order_date,1,7)=?""".replace("=?", f"='{month}'"), expected)
+        WHERE substr(o.order_date,1,7)=?""", (month,)).fetchone()[0]
+    assert actual == expected, f"{month} revenue: expected {expected}, got {actual}"
+    print(f"PASS {month} revenue: {actual}")
 check("Orphan order lines", """SELECT COUNT(*) FROM order_items i
     LEFT JOIN orders o ON i.order_id=o.order_id WHERE o.order_id IS NULL""", 0)
 print("Revenue case checks passed.")
