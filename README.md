@@ -1,6 +1,6 @@
 # Sales Revenue Analysis
 
-[![Verify SQL case study](https://github.com/libana3012-pixel/sales-revenue-analysis-sql/actions/workflows/verify.yml/badge.svg)](https://github.com/libana3012-pixel/sales-revenue-analysis-sql/actions/workflows/verify.yml)
+[![Verify SQL case study](https://github.com/libana3012-pixel/Sales-Revenue-Analysis/actions/workflows/verify.yml/badge.svg)](https://github.com/libana3012-pixel/Sales-Revenue-Analysis/actions/workflows/verify.yml)
 ### A small retail case study, from transactions to commercial decisions
 
 **SQL / SQLite** · Transaction modelling · KPI design · Reproducible reporting
@@ -13,13 +13,16 @@ This repository includes earlier SQL exercises and an independent, end-to-end `c
 
 I'm Liban Yusuf, with a background in marketing and sales management and experience working with digital analytics and business reporting. This project develops the SQL side of that work: getting reliable commercial measures from transactional records and explaining what the figures do — and do not — show.
 
-**Related work:** [Customer purchasing patterns](https://github.com/libana3012-pixel/customer-sales-analysis-sql) · [GitHub profile](https://github.com/libana3012-pixel)
+**Related work:** [Customer purchasing patterns](https://github.com/libana3012-pixel/Customer-Sales-Analysis) · [GitHub profile](https://github.com/libana3012-pixel)
+
+**Suggested reading route:** [Start here](case-study/START-HERE.md) → [Why I chose each analytical step](case-study/METHOD.md) → [Results](case-study/RESULTS.md) → [SQL](case-study/analysis.sql) → [Automated checks](.github/workflows/verify.yml).
 
 ## Repository map
 
 | Location | Purpose |
 | --- | --- |
 | [`case-study/`](case-study/) | Featured, self-contained analysis and data |
+| [`case-study/METHOD.md`](case-study/METHOD.md) | Why each query and modelling choice was made |
 | [`case-study/START-HERE.md`](case-study/START-HERE.md) | Simple explanation for non-technical readers |
 | [`case-study/RESULTS.md`](case-study/RESULTS.md) | Calculated KPIs and interpretation |
 | [`case-study/quality-checks.sql`](case-study/quality-checks.sql) | Reconciliation and data checks |
