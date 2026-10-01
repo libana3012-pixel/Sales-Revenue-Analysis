@@ -2,6 +2,8 @@
 
 You do not need to know SQL to understand the story.
 
+[← Repository home](../README.md) · [Why the method was chosen](METHOD.md) · [Results](RESULTS.md) · [Source data](schema-and-data.sql)
+
 ## The story
 Imagine a small shop with a notebook of orders. Each order says **who bought something, when, which products, how many and at what price**. We want to answer: Is the shop selling more because it gets more orders, or because each order is bigger?
 
