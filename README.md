@@ -1,39 +1,71 @@
 # Sales Revenue Analysis
-**A small business question answered with SQL**
+### A small retail case study, from transactions to commercial decisions
 
-Imagine a shop owner asks: *What sold, how much did we earn, and who bought from us?* This project turns a set of sample purchases into an understandable report.
+**SQL / SQLite** · Transaction modelling · KPI design · Reproducible reporting
 
-## The result in 30 seconds
-The new, self-contained case study uses **made-up shop data** covering March–June 2026. These are exercise results, not figures from an employer.
+> **The business question:** Sales figures tell us what happened. Can we explain *where the money came from*, whether bigger orders drove the difference between months, and which parts of the catalogue deserve a closer look?
 
-| What we measured | Result | In plain English |
-| --- | ---: | --- |
-| Sales value | 2,020 CU | The sum of all items sold |
-| Orders | 12 | Twelve separate purchases |
-| Average order | 168.33 CU | Sales value divided by 12 orders |
-| Items sold | 28 | Total units, including multiples of the same product |
-| Active customers | 7 | Seven people made at least one purchase |
+This repository includes earlier SQL exercises and an independent, end-to-end `case-study/` with an explicitly **synthetic** retail dataset. The figures below are exercise outputs, not employer results.
 
-**One finding:** June produced the highest sales value (605 CU), even though every month had three orders. The difference came from the size of the purchases, not from more orders.
+## The story in 30 seconds
 
-*CU = an imaginary currency unit used for the exercise.*
+| Measure | Result | Why it matters |
+|:--|--:|:--|
+| Revenue | 2,020 CU | Gross value of items sold |
+| Orders | 12 | Number of distinct purchases |
+| Average order value | 168.33 CU | How much an order is worth on average |
+| Units sold | 28 | Total quantity across all order lines |
+| Active customers | 7 of 8 | Customers with at least one order |
 
-## Explore the project
-1. [Read the findings](case-study/RESULTS.md) — what happened, why it matters and what we cannot conclude.
-2. [See the sample data](case-study/schema-and-data.sql) — eight customers, six products, twelve orders.
-3. [See the analysis](case-study/analysis.sql) — SQL used to calculate the answers.
-4. [Follow the plain-language guide](case-study/START-HERE.md) — no prior SQL knowledge required.
+CU is a fictional currency unit.
 
-## How to run it
-With SQLite installed, from the repository root:
+### Monthly revenue
+
+| Month | Revenue | Orders | Change in revenue |
+|:--|--:|--:|--:|
+| March | 460 | 3 | — |
+| April | 505 | 3 | +9.78% |
+| May | 450 | 3 | −10.89% |
+| June | 605 | 3 | +34.44% |
+
+**Interpretation:** Each month has three orders, yet June generated the most revenue. Here, order *value* changed rather than order *volume*. That is a useful distinction to investigate in a business review; four months and twelve fictional orders are not enough to forecast a real company.
+
+## Read it your way
+
+| If you have… | Open |
+|:--|:--|
+| 1 minute | [Results and limitations](case-study/RESULTS.md) |
+| 5 minutes | [Plain-English walkthrough](case-study/START-HERE.md) |
+| 10 minutes | [SQL queries](case-study/analysis.sql) |
+| Time to reproduce the work | [Database setup](case-study/schema-and-data.sql) and [validation checks](case-study/quality-checks.sql) |
+
+## How the work is structured
+
+```text
+case-study/
+  schema-and-data.sql   build the sample database
+  analysis.sql          answer the business questions
+  quality-checks.sql    check important source assumptions
+  RESULTS.md            report verified sample outputs and cautions
+  START-HERE.md         explain the project without SQL jargon
+```
+
+The source uses four connected tables: **customers → orders → order_items ← products**. Order lines carry the transaction-time price, so a later change to a product's catalogue price does not rewrite earlier revenue.
+
+## Run the case
+
 ```bash
 sqlite3 revenue.db < case-study/schema-and-data.sql
+sqlite3 -header -column revenue.db < case-study/quality-checks.sql
 sqlite3 -header -column revenue.db < case-study/analysis.sql
 ```
-The first command creates the practice database. The second prints the analysis.
 
-## Skills shown
-Connecting tables (JOIN), grouping results (GROUP BY), business measures (KPIs), month-to-month comparisons (LAG), and quality checks to avoid counting an order twice.
+Use a fresh database for the setup command. The validation script documents the expected values. Compare the calculated outputs with the results document rather than trusting a screenshot.
 
-## A note on scope
-This repository also contains earlier practice material. The `case-study/` folder is a separate, reproducible example with its own tables and transaction-time prices. Its results should not be assumed to come from any earlier exercise in the repository. Source data is synthetic; prices, costs and taxes are simplified.
+## What this demonstrates
+
+**Technical:** joins, aggregations, CTEs, window functions, distinct counts, historical line prices and data checks.
+
+**Analytical:** choosing measures, separating order count from order lines, explaining an observed change, and making the limitations of a result visible.
+
+**Next iteration:** publish a Power BI report built from these four tables, with checked DAX measures and a real screenshot after validation.
