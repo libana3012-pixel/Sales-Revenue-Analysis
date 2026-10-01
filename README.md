@@ -1,4 +1,6 @@
 # Sales Revenue Analysis
+
+[![Verify SQL case study](https://github.com/libana3012-pixel/sales-revenue-analysis-sql/actions/workflows/verify.yml/badge.svg)](https://github.com/libana3012-pixel/sales-revenue-analysis-sql/actions/workflows/verify.yml)
 ### A small retail case study, from transactions to commercial decisions
 
 **SQL / SQLite** · Transaction modelling · KPI design · Reproducible reporting
