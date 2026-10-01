@@ -7,6 +7,24 @@
 
 This repository includes earlier SQL exercises and an independent, end-to-end `case-study/` with an explicitly **synthetic** retail dataset. The figures below are exercise outputs, not employer results.
 
+## About the analyst
+
+I'm Liban Yusuf, with a background in marketing and sales management and experience working with digital analytics and business reporting. This project develops the SQL side of that work: getting reliable commercial measures from transactional records and explaining what the figures do — and do not — show.
+
+**Related work:** [Customer purchasing patterns](https://github.com/libana3012-pixel/customer-sales-analysis-sql) · [GitHub profile](https://github.com/libana3012-pixel)
+
+## Repository map
+
+| Location | Purpose |
+| --- | --- |
+| [`case-study/`](case-study/) | Featured, self-contained analysis and data |
+| [`case-study/START-HERE.md`](case-study/START-HERE.md) | Simple explanation for non-technical readers |
+| [`case-study/RESULTS.md`](case-study/RESULTS.md) | Calculated KPIs and interpretation |
+| [`case-study/quality-checks.sql`](case-study/quality-checks.sql) | Reconciliation and data checks |
+| [`archive/early-exercises/`](archive/early-exercises/) | Original SQL exercises preserved separately |
+
+---
+
 ## The story in 30 seconds
 
 | Measure | Result | Why it matters |
